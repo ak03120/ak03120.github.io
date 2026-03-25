@@ -7,7 +7,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "md-primary": "#6750a4",
+              "md-on-primary": "#ffffff",
+              "md-primary-container": "#eaddff",
+              "md-on-primary-container": "#21005d",
+              "md-secondary": "#625b71",
+              "md-surface": "#fffbfe",
+              "md-surface-variant": "#e7e0ec",
+              "md-outline": "#79747e",
+            },
+            fontFamily: {
+              roboto: ["Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              "2xl": "16px",
+              "3xl": "28px",
+            },
+          },
+        },
+      };
+    </script>
     <script type="importmap">
       {
         "imports": {
@@ -33,197 +58,19 @@
         --md-ref-typeface-brand: "Roboto";
         --md-ref-typeface-plain: "Roboto";
       }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      body {
-        font-family: "Roboto", sans-serif;
-        background-color: var(--md-sys-color-surface);
-        color: #1c1b1f;
-        min-height: 100vh;
-      }
-
-      header {
-        background-color: var(--md-sys-color-surface);
-        border-bottom: 1px solid var(--md-sys-color-surface-variant);
-        padding: 0 24px;
-        height: 64px;
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-      }
-
-      header .title {
-        font-size: 22px;
-        font-weight: 500;
-        color: var(--md-sys-color-on-surface, #1c1b1f);
-        flex: 1;
-      }
-
-      main {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: 32px 24px 80px;
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-      }
-
-      .hero {
-        background: linear-gradient(135deg, var(--md-sys-color-primary-container) 0%, #d0bcff 100%);
-        border-radius: 28px;
-        padding: 48px 40px;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .hero h1 {
-        font-size: 36px;
-        font-weight: 700;
-        color: var(--md-sys-color-on-primary-container);
-        line-height: 1.2;
-      }
-
-      .hero p {
-        font-size: 16px;
-        color: #381e72;
-        max-width: 480px;
-        line-height: 1.6;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 8px;
-      }
-
-      section {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .section-title {
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 0.1px;
-        color: var(--md-sys-color-secondary);
-        text-transform: uppercase;
-        padding-bottom: 4px;
-        border-bottom: 1px solid var(--md-sys-color-surface-variant);
-      }
-
-      .row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
-      }
-
-      .cards-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 16px;
-      }
-
-      .card {
-        background-color: var(--md-sys-color-surface-variant);
-        border-radius: 16px;
-        padding: 24px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        transition: box-shadow 0.2s;
-      }
-
-      .card:hover {
-        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      }
-
-      .card-icon {
-        width: 48px;
-        height: 48px;
-        border-radius: 12px;
-        background-color: var(--md-sys-color-primary-container);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--md-sys-color-on-primary-container);
-      }
-
-      .card h3 {
-        font-size: 18px;
-        font-weight: 500;
-        color: #1c1b1f;
-      }
-
-      .card p {
-        font-size: 14px;
-        color: #49454f;
-        line-height: 1.6;
-      }
-
-      .chip-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .input-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        align-items: flex-start;
-      }
-
-      .list-card {
-        background-color: var(--md-sys-color-surface-variant);
-        border-radius: 16px;
-        overflow: hidden;
-      }
-
-      .fab-row {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-        align-items: center;
-      }
-
-      .progress-row {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
-
-      .snackbar-area {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-
       md-filled-text-field,
       md-outlined-text-field {
         min-width: 200px;
       }
     </style>
   </head>
-  <body>
-    <header>
+  <body class="font-roboto bg-md-surface text-[#1c1b1f] min-h-screen">
+
+    <header class="bg-md-surface border-b border-md-surface-variant px-6 h-16 flex items-center gap-4 sticky top-0 z-50 shadow-sm">
       <md-icon-button>
         <md-icon>menu</md-icon>
       </md-icon-button>
-      <span class="title">Material 3 Demo</span>
+      <span class="flex-1 text-[22px] font-medium text-[#1c1b1f]">Material 3 Demo</span>
       <md-icon-button>
         <md-icon>search</md-icon>
       </md-icon-button>
@@ -232,11 +79,14 @@
       </md-icon-button>
     </header>
 
-    <main>
-      <div class="hero">
-        <h1>Material Design 3</h1>
-        <p>Google の最新デザインシステム。表現豊かで適応性の高い UI コンポーネントで、美しいプロダクトを構築しましょう。</p>
-        <div class="hero-actions">
+    <main class="max-w-4xl mx-auto px-6 py-10 pb-20 flex flex-col gap-12">
+
+      <div class="bg-gradient-to-br from-md-primary-container to-[#d0bcff] rounded-3xl p-12 flex flex-col gap-4">
+        <h1 class="text-4xl font-bold text-md-on-primary-container leading-tight">Material Design 3</h1>
+        <p class="text-base text-[#381e72] max-w-lg leading-relaxed">
+          Google の最新デザインシステム。表現豊かで適応性の高い UI コンポーネントで、美しいプロダクトを構築しましょう。
+        </p>
+        <div class="flex flex-wrap gap-3 mt-2">
           <md-filled-button>
             <md-icon slot="icon">rocket_launch</md-icon>
             はじめる
@@ -248,16 +98,16 @@
         </div>
       </div>
 
-      <section>
-        <div class="section-title">Buttons</div>
-        <div class="row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Buttons</div>
+        <div class="flex flex-wrap gap-3 items-center">
           <md-filled-button>Filled</md-filled-button>
           <md-filled-tonal-button>Tonal</md-filled-tonal-button>
           <md-outlined-button>Outlined</md-outlined-button>
           <md-text-button>Text</md-text-button>
           <md-elevated-button>Elevated</md-elevated-button>
         </div>
-        <div class="row">
+        <div class="flex flex-wrap gap-3 items-center">
           <md-filled-button disabled>Disabled</md-filled-button>
           <md-filled-button>
             <md-icon slot="icon">favorite</md-icon>
@@ -266,9 +116,9 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">FAB (Floating Action Button)</div>
-        <div class="fab-row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">FAB (Floating Action Button)</div>
+        <div class="flex flex-wrap gap-4 items-center">
           <md-fab label="作成">
             <md-icon slot="icon">add</md-icon>
           </md-fab>
@@ -284,39 +134,39 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Cards</div>
-        <div class="cards-grid">
-          <div class="card">
-            <div class="card-icon">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Cards</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-md-surface-variant rounded-2xl p-6 flex flex-col gap-3 transition-shadow hover:shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-md-primary-container flex items-center justify-center text-md-on-primary-container">
               <md-icon>palette</md-icon>
             </div>
-            <h3>カラーシステム</h3>
-            <p>ダイナミックカラーでブランドの個性を表現。アクセシビリティを保ちながら美しい配色を実現します。</p>
-            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+            <h3 class="text-lg font-medium text-[#1c1b1f]">カラーシステム</h3>
+            <p class="text-sm text-[#49454f] leading-relaxed">ダイナミックカラーでブランドの個性を表現。アクセシビリティを保ちながら美しい配色を実現します。</p>
+            <md-text-button class="self-start">詳しく見る</md-text-button>
           </div>
-          <div class="card">
-            <div class="card-icon">
+          <div class="bg-md-surface-variant rounded-2xl p-6 flex flex-col gap-3 transition-shadow hover:shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-md-primary-container flex items-center justify-center text-md-on-primary-container">
               <md-icon>text_fields</md-icon>
             </div>
-            <h3>タイポグラフィ</h3>
-            <p>5 つのスケールと 15 のスタイルで、読みやすく美しいテキスト表現を提供します。</p>
-            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+            <h3 class="text-lg font-medium text-[#1c1b1f]">タイポグラフィ</h3>
+            <p class="text-sm text-[#49454f] leading-relaxed">5 つのスケールと 15 のスタイルで、読みやすく美しいテキスト表現を提供します。</p>
+            <md-text-button class="self-start">詳しく見る</md-text-button>
           </div>
-          <div class="card">
-            <div class="card-icon">
+          <div class="bg-md-surface-variant rounded-2xl p-6 flex flex-col gap-3 transition-shadow hover:shadow-lg">
+            <div class="w-12 h-12 rounded-xl bg-md-primary-container flex items-center justify-center text-md-on-primary-container">
               <md-icon>widgets</md-icon>
             </div>
-            <h3>コンポーネント</h3>
-            <p>ボタン、カード、ダイアログなど、豊富なコンポーネントライブラリで開発を加速します。</p>
-            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+            <h3 class="text-lg font-medium text-[#1c1b1f]">コンポーネント</h3>
+            <p class="text-sm text-[#49454f] leading-relaxed">ボタン、カード、ダイアログなど、豊富なコンポーネントライブラリで開発を加速します。</p>
+            <md-text-button class="self-start">詳しく見る</md-text-button>
           </div>
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Icon Buttons &amp; Chips</div>
-        <div class="row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Icon Buttons &amp; Chips</div>
+        <div class="flex flex-wrap gap-3 items-center">
           <md-icon-button>
             <md-icon>home</md-icon>
           </md-icon-button>
@@ -334,7 +184,7 @@
             <md-icon slot="selected">bookmark</md-icon>
           </md-icon-button>
         </div>
-        <div class="chip-row">
+        <div class="flex flex-wrap gap-2">
           <md-assist-chip label="提案チップ">
             <md-icon slot="icon">lightbulb</md-icon>
           </md-assist-chip>
@@ -348,9 +198,9 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Text Fields</div>
-        <div class="input-row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Text Fields</div>
+        <div class="flex flex-wrap gap-4 items-start">
           <md-filled-text-field label="名前" placeholder="山田 太郎">
             <md-icon slot="leading-icon">person</md-icon>
           </md-filled-text-field>
@@ -364,21 +214,21 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Selection Controls</div>
-        <div class="row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Selection Controls</div>
+        <div class="flex flex-wrap gap-3 items-center">
           <md-checkbox></md-checkbox>
           <md-checkbox checked></md-checkbox>
           <md-checkbox indeterminate></md-checkbox>
           <md-checkbox disabled></md-checkbox>
         </div>
-        <div class="row">
+        <div class="flex flex-wrap gap-3 items-center">
           <md-radio name="demo" value="a" checked></md-radio>
           <md-radio name="demo" value="b"></md-radio>
           <md-radio name="demo" value="c"></md-radio>
           <md-radio name="demo" value="d" disabled></md-radio>
         </div>
-        <div class="row">
+        <div class="flex flex-wrap gap-3 items-center">
           <md-switch></md-switch>
           <md-switch selected></md-switch>
           <md-switch>
@@ -388,29 +238,29 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Progress Indicators</div>
-        <div class="progress-row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Progress Indicators</div>
+        <div class="flex flex-col gap-4">
           <md-linear-progress value="0.6"></md-linear-progress>
           <md-linear-progress indeterminate></md-linear-progress>
-          <div class="row">
+          <div class="flex flex-wrap gap-4 items-center">
             <md-circular-progress value="0.75"></md-circular-progress>
             <md-circular-progress indeterminate></md-circular-progress>
           </div>
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Slider</div>
-        <div style="padding: 0 8px; display: flex; flex-direction: column; gap: 16px;">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Slider</div>
+        <div class="flex flex-col gap-4 px-2">
           <md-slider min="0" max="100" value="40" labeled></md-slider>
           <md-slider min="0" max="100" value-start="20" value-end="80" range labeled></md-slider>
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Lists</div>
-        <div class="list-card">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Lists</div>
+        <div class="bg-md-surface-variant rounded-2xl overflow-hidden">
           <md-list>
             <md-list-item>
               <md-icon slot="start">inbox</md-icon>
@@ -437,11 +287,11 @@
         </div>
       </section>
 
-      <section>
-        <div class="section-title">Dialogs &amp; Menus</div>
-        <div class="row">
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Dialogs &amp; Menus</div>
+        <div class="flex flex-wrap gap-3 items-center">
           <md-filled-button id="open-dialog">ダイアログを開く</md-filled-button>
-          <div style="position: relative;">
+          <div class="relative">
             <md-outlined-button id="open-menu">メニューを開く</md-outlined-button>
             <md-menu id="demo-menu" anchor="open-menu">
               <md-menu-item>
@@ -462,9 +312,7 @@
         </div>
         <md-dialog id="demo-dialog">
           <div slot="headline">確認</div>
-          <div slot="content">
-            この操作を実行してもよろしいですか？
-          </div>
+          <div slot="content">この操作を実行してもよろしいですか？</div>
           <div slot="actions">
             <md-text-button id="close-dialog">キャンセル</md-text-button>
             <md-filled-button id="confirm-dialog">確認</md-filled-button>
@@ -472,8 +320,8 @@
         </md-dialog>
       </section>
 
-      <section>
-        <div class="section-title">Navigation Bar</div>
+      <section class="flex flex-col gap-4">
+        <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Navigation Bar</div>
         <md-navigation-bar>
           <md-navigation-tab label="ホーム" active>
             <md-icon slot="active-icon">home</md-icon>
@@ -493,6 +341,7 @@
           </md-navigation-tab>
         </md-navigation-bar>
       </section>
+
     </main>
 
     <script type="module">

@@ -17,6 +17,40 @@
 }
 
 md-filled-text-field,
-md-outlined-text-field {
+md-outlined-text-field,
+md-filled-select,
+md-outlined-select {
   min-width: 200px;
+}
+
+.ripple-demo-surface,
+.ripple-demo-icon {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+}
+
+.ripple-demo-surface {
+  min-width: 180px;
+  min-height: 56px;
+  padding: 0 24px;
+  border-radius: 20px;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: var(--md-sys-typescale-label-large-weight);
+  line-height: var(--md-sys-typescale-label-large-line-height);
+}
+
+.ripple-demo-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

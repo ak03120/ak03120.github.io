@@ -21,21 +21,59 @@ document.getElementById("open-menu").addEventListener("click", () => { menu.open
 const tagChipSet = document.getElementById("tag-chip-set");
 const tagInput = document.getElementById("tag-input");
 
+function createTagChip(label) {
+  const chip = document.createElement("md-filter-chip");
+  chip.label = label;
+  chip.removable = true;
+  chip.ariaLabelRemove = `${label} を削除`;
+  chip.addEventListener("remove", () => chip.remove());
+  return chip;
+}
+
 function addTag() {
   const label = tagInput.value.trim();
   if (!label) return;
-  const chip = document.createElement("md-input-chip");
-  chip.label = label;
-  chip.addEventListener("remove", () => chip.remove());
-  tagChipSet.appendChild(chip);
+  const exists = Array.from(tagChipSet.querySelectorAll("md-filter-chip")).some((chip) => chip.label === label);
+  if (exists) {
+    tagInput.value = "";
+    tagInput.focus();
+    return;
+  }
+  tagChipSet.appendChild(createTagChip(label));
   tagInput.value = "";
   tagInput.focus();
 }
 
 document.getElementById("tag-add-btn").addEventListener("click", addTag);
-tagInput.addEventListener("keydown", (e) => { if (e.key === "Enter") addTag(); });
-tagChipSet.querySelectorAll("md-input-chip").forEach(chip => {
+tagInput.addEventListener("keydown", (e) => {
+  if (e.key !== "Enter") return;
+  e.preventDefault();
+  addTag();
+});
+tagChipSet.querySelectorAll("md-filter-chip").forEach((chip) => {
+  chip.removable = true;
+  chip.ariaLabelRemove = `${chip.label} を削除`;
   chip.addEventListener("remove", () => chip.remove());
 });
+
+const tabs = document.getElementById("content-tabs");
+const tabPanels = [
+  document.getElementById("panel-design"),
+  document.getElementById("panel-code"),
+  document.getElementById("panel-ship")
+];
+
+function syncTabs() {
+  const activeTab = tabs.querySelector("md-primary-tab[active]");
+  const activePanelId = activeTab?.getAttribute("aria-controls");
+  tabPanels.forEach((panel) => {
+    const isActive = panel.id === activePanelId;
+    panel.classList.toggle("hidden", !isActive);
+    panel.classList.toggle("flex", isActive);
+  });
+}
+
+tabs.addEventListener("change", syncTabs);
+syncTabs();
 
 applyCurrentTheme();

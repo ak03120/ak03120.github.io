@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Material 3 Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+      import "@material/web/all.js";
+      import { styles as typescaleStyles } from "@material/web/typography/md-typescale-styles.js";
+      document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <style>
+      :root {
+        --md-sys-color-primary: #6750a4;
+        --md-sys-color-on-primary: #ffffff;
+        --md-sys-color-primary-container: #eaddff;
+        --md-sys-color-on-primary-container: #21005d;
+        --md-sys-color-secondary: #625b71;
+        --md-sys-color-surface: #fffbfe;
+        --md-sys-color-surface-variant: #e7e0ec;
+        --md-sys-color-outline: #79747e;
+        --md-ref-typeface-brand: "Roboto";
+        --md-ref-typeface-plain: "Roboto";
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: var(--md-sys-color-surface);
+        color: #1c1b1f;
+        min-height: 100vh;
+      }
+
+      header {
+        background-color: var(--md-sys-color-surface);
+        border-bottom: 1px solid var(--md-sys-color-surface-variant);
+        padding: 0 24px;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+      }
+
+      header .title {
+        font-size: 22px;
+        font-weight: 500;
+        color: var(--md-sys-color-on-surface, #1c1b1f);
+        flex: 1;
+      }
+
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 32px 24px 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, var(--md-sys-color-primary-container) 0%, #d0bcff 100%);
+        border-radius: 28px;
+        padding: 48px 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .hero h1 {
+        font-size: 36px;
+        font-weight: 700;
+        color: var(--md-sys-color-on-primary-container);
+        line-height: 1.2;
+      }
+
+      .hero p {
+        font-size: 16px;
+        color: #381e72;
+        max-width: 480px;
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+      }
+
+      section {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.1px;
+        color: var(--md-sys-color-secondary);
+        text-transform: uppercase;
+        padding-bottom: 4px;
+        border-bottom: 1px solid var(--md-sys-color-surface-variant);
+      }
+
+      .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        align-items: center;
+      }
+
+      .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 16px;
+      }
+
+      .card {
+        background-color: var(--md-sys-color-surface-variant);
+        border-radius: 16px;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        transition: box-shadow 0.2s;
+      }
+
+      .card:hover {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      }
+
+      .card-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background-color: var(--md-sys-color-primary-container);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--md-sys-color-on-primary-container);
+      }
+
+      .card h3 {
+        font-size: 18px;
+        font-weight: 500;
+        color: #1c1b1f;
+      }
+
+      .card p {
+        font-size: 14px;
+        color: #49454f;
+        line-height: 1.6;
+      }
+
+      .chip-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .input-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .list-card {
+        background-color: var(--md-sys-color-surface-variant);
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .fab-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: center;
+      }
+
+      .progress-row {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .snackbar-area {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      md-filled-text-field,
+      md-outlined-text-field {
+        min-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <md-icon-button>
+        <md-icon>menu</md-icon>
+      </md-icon-button>
+      <span class="title">Material 3 Demo</span>
+      <md-icon-button>
+        <md-icon>search</md-icon>
+      </md-icon-button>
+      <md-icon-button>
+        <md-icon>more_vert</md-icon>
+      </md-icon-button>
+    </header>
+
+    <main>
+      <div class="hero">
+        <h1>Material Design 3</h1>
+        <p>Google の最新デザインシステム。表現豊かで適応性の高い UI コンポーネントで、美しいプロダクトを構築しましょう。</p>
+        <div class="hero-actions">
+          <md-filled-button>
+            <md-icon slot="icon">rocket_launch</md-icon>
+            はじめる
+          </md-filled-button>
+          <md-outlined-button>
+            <md-icon slot="icon">open_in_new</md-icon>
+            ドキュメント
+          </md-outlined-button>
+        </div>
+      </div>
+
+      <section>
+        <div class="section-title">Buttons</div>
+        <div class="row">
+          <md-filled-button>Filled</md-filled-button>
+          <md-filled-tonal-button>Tonal</md-filled-tonal-button>
+          <md-outlined-button>Outlined</md-outlined-button>
+          <md-text-button>Text</md-text-button>
+          <md-elevated-button>Elevated</md-elevated-button>
+        </div>
+        <div class="row">
+          <md-filled-button disabled>Disabled</md-filled-button>
+          <md-filled-button>
+            <md-icon slot="icon">favorite</md-icon>
+            With Icon
+          </md-filled-button>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">FAB (Floating Action Button)</div>
+        <div class="fab-row">
+          <md-fab label="作成">
+            <md-icon slot="icon">add</md-icon>
+          </md-fab>
+          <md-fab size="small">
+            <md-icon slot="icon">edit</md-icon>
+          </md-fab>
+          <md-fab size="large">
+            <md-icon slot="icon">navigation</md-icon>
+          </md-fab>
+          <md-branded-fab label="ブランド">
+            <md-icon slot="icon">favorite</md-icon>
+          </md-branded-fab>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Cards</div>
+        <div class="cards-grid">
+          <div class="card">
+            <div class="card-icon">
+              <md-icon>palette</md-icon>
+            </div>
+            <h3>カラーシステム</h3>
+            <p>ダイナミックカラーでブランドの個性を表現。アクセシビリティを保ちながら美しい配色を実現します。</p>
+            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <md-icon>text_fields</md-icon>
+            </div>
+            <h3>タイポグラフィ</h3>
+            <p>5 つのスケールと 15 のスタイルで、読みやすく美しいテキスト表現を提供します。</p>
+            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <md-icon>widgets</md-icon>
+            </div>
+            <h3>コンポーネント</h3>
+            <p>ボタン、カード、ダイアログなど、豊富なコンポーネントライブラリで開発を加速します。</p>
+            <md-text-button style="align-self: flex-start;">詳しく見る</md-text-button>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Icon Buttons &amp; Chips</div>
+        <div class="row">
+          <md-icon-button>
+            <md-icon>home</md-icon>
+          </md-icon-button>
+          <md-filled-icon-button>
+            <md-icon>favorite</md-icon>
+          </md-filled-icon-button>
+          <md-filled-tonal-icon-button>
+            <md-icon>settings</md-icon>
+          </md-filled-tonal-icon-button>
+          <md-outlined-icon-button>
+            <md-icon>share</md-icon>
+          </md-outlined-icon-button>
+          <md-icon-button toggle>
+            <md-icon>bookmark_border</md-icon>
+            <md-icon slot="selected">bookmark</md-icon>
+          </md-icon-button>
+        </div>
+        <div class="chip-row">
+          <md-assist-chip label="提案チップ">
+            <md-icon slot="icon">lightbulb</md-icon>
+          </md-assist-chip>
+          <md-filter-chip label="フィルター" selected></md-filter-chip>
+          <md-filter-chip label="デザイン"></md-filter-chip>
+          <md-filter-chip label="開発"></md-filter-chip>
+          <md-input-chip label="タグ">
+            <md-icon slot="icon">tag</md-icon>
+          </md-input-chip>
+          <md-suggestion-chip label="提案"></md-suggestion-chip>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Text Fields</div>
+        <div class="input-row">
+          <md-filled-text-field label="名前" placeholder="山田 太郎">
+            <md-icon slot="leading-icon">person</md-icon>
+          </md-filled-text-field>
+          <md-outlined-text-field label="メールアドレス" type="email" placeholder="example@mail.com">
+            <md-icon slot="leading-icon">email</md-icon>
+          </md-outlined-text-field>
+          <md-filled-text-field label="パスワード" type="password">
+            <md-icon slot="leading-icon">lock</md-icon>
+          </md-filled-text-field>
+          <md-outlined-text-field label="メッセージ" type="textarea" rows="3" placeholder="メッセージを入力..."></md-outlined-text-field>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Selection Controls</div>
+        <div class="row">
+          <md-checkbox></md-checkbox>
+          <md-checkbox checked></md-checkbox>
+          <md-checkbox indeterminate></md-checkbox>
+          <md-checkbox disabled></md-checkbox>
+        </div>
+        <div class="row">
+          <md-radio name="demo" value="a" checked></md-radio>
+          <md-radio name="demo" value="b"></md-radio>
+          <md-radio name="demo" value="c"></md-radio>
+          <md-radio name="demo" value="d" disabled></md-radio>
+        </div>
+        <div class="row">
+          <md-switch></md-switch>
+          <md-switch selected></md-switch>
+          <md-switch>
+            <md-icon slot="on-icon">check</md-icon>
+          </md-switch>
+          <md-switch disabled></md-switch>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Progress Indicators</div>
+        <div class="progress-row">
+          <md-linear-progress value="0.6"></md-linear-progress>
+          <md-linear-progress indeterminate></md-linear-progress>
+          <div class="row">
+            <md-circular-progress value="0.75"></md-circular-progress>
+            <md-circular-progress indeterminate></md-circular-progress>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Slider</div>
+        <div style="padding: 0 8px; display: flex; flex-direction: column; gap: 16px;">
+          <md-slider min="0" max="100" value="40" labeled></md-slider>
+          <md-slider min="0" max="100" value-start="20" value-end="80" range labeled></md-slider>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Lists</div>
+        <div class="list-card">
+          <md-list>
+            <md-list-item>
+              <md-icon slot="start">inbox</md-icon>
+              受信トレイ
+              <span slot="end">24</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <md-icon slot="start">send</md-icon>
+              送信済み
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <md-icon slot="start">drafts</md-icon>
+              下書き
+              <span slot="end">3</span>
+            </md-list-item>
+            <md-divider></md-divider>
+            <md-list-item>
+              <md-icon slot="start">delete</md-icon>
+              ゴミ箱
+            </md-list-item>
+          </md-list>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-title">Dialogs &amp; Menus</div>
+        <div class="row">
+          <md-filled-button id="open-dialog">ダイアログを開く</md-filled-button>
+          <div style="position: relative;">
+            <md-outlined-button id="open-menu">メニューを開く</md-outlined-button>
+            <md-menu id="demo-menu" anchor="open-menu">
+              <md-menu-item>
+                <md-icon slot="start">edit</md-icon>
+                編集
+              </md-menu-item>
+              <md-menu-item>
+                <md-icon slot="start">content_copy</md-icon>
+                コピー
+              </md-menu-item>
+              <md-divider></md-divider>
+              <md-menu-item>
+                <md-icon slot="start">delete</md-icon>
+                削除
+              </md-menu-item>
+            </md-menu>
+          </div>
+        </div>
+        <md-dialog id="demo-dialog">
+          <div slot="headline">確認</div>
+          <div slot="content">
+            この操作を実行してもよろしいですか？
+          </div>
+          <div slot="actions">
+            <md-text-button id="close-dialog">キャンセル</md-text-button>
+            <md-filled-button id="confirm-dialog">確認</md-filled-button>
+          </div>
+        </md-dialog>
+      </section>
+
+      <section>
+        <div class="section-title">Navigation Bar</div>
+        <md-navigation-bar>
+          <md-navigation-tab label="ホーム" active>
+            <md-icon slot="active-icon">home</md-icon>
+            <md-icon slot="inactive-icon">home</md-icon>
+          </md-navigation-tab>
+          <md-navigation-tab label="お気に入り">
+            <md-icon slot="active-icon">favorite</md-icon>
+            <md-icon slot="inactive-icon">favorite_border</md-icon>
+          </md-navigation-tab>
+          <md-navigation-tab label="検索">
+            <md-icon slot="active-icon">search</md-icon>
+            <md-icon slot="inactive-icon">search</md-icon>
+          </md-navigation-tab>
+          <md-navigation-tab label="設定">
+            <md-icon slot="active-icon">settings</md-icon>
+            <md-icon slot="inactive-icon">settings</md-icon>
+          </md-navigation-tab>
+        </md-navigation-bar>
+      </section>
+    </main>
+
+    <script type="module">
+      const dialog = document.getElementById("demo-dialog");
+      document.getElementById("open-dialog").addEventListener("click", () => {
+        dialog.open = true;
+      });
+      document.getElementById("close-dialog").addEventListener("click", () => {
+        dialog.open = false;
+      });
+      document.getElementById("confirm-dialog").addEventListener("click", () => {
+        dialog.open = false;
+      });
+
+      const menu = document.getElementById("demo-menu");
+      document.getElementById("open-menu").addEventListener("click", () => {
+        menu.open = !menu.open;
+      });
+    </script>
+  </body>
+</html>

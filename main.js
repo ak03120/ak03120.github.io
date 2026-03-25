@@ -57,6 +57,5 @@ tagChipSet.querySelectorAll("md-filter-chip").forEach((chip) => {
 });
 
 document.getElementById("ripple-surface").attach(document.getElementById("ripple-surface-control"));
-document.getElementById("ripple-icon").attach(document.getElementById("ripple-icon-control"));
 
 applyCurrentTheme();

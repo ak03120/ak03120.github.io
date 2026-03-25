@@ -18,4 +18,24 @@ document.getElementById("confirm-dialog").addEventListener("click", () => { dial
 const menu = document.getElementById("demo-menu");
 document.getElementById("open-menu").addEventListener("click", () => { menu.open = !menu.open; });
 
+const tagChipSet = document.getElementById("tag-chip-set");
+const tagInput = document.getElementById("tag-input");
+
+function addTag() {
+  const label = tagInput.value.trim();
+  if (!label) return;
+  const chip = document.createElement("md-input-chip");
+  chip.label = label;
+  chip.addEventListener("remove", () => chip.remove());
+  tagChipSet.appendChild(chip);
+  tagInput.value = "";
+  tagInput.focus();
+}
+
+document.getElementById("tag-add-btn").addEventListener("click", addTag);
+tagInput.addEventListener("keydown", (e) => { if (e.key === "Enter") addTag(); });
+tagChipSet.querySelectorAll("md-input-chip").forEach(chip => {
+  chip.addEventListener("remove", () => chip.remove());
+});
+
 applyCurrentTheme();

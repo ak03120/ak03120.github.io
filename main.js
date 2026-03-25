@@ -5,12 +5,9 @@ import { themeFromSourceColor, applyTheme, argbFromHex } from "@material/materia
 document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
 
 const theme = themeFromSourceColor(argbFromHex("#C0002E"));
-const html = document.documentElement;
-const icon = document.getElementById("theme-icon");
-const isDark = () => html.classList.contains("dark");
 
 function applyCurrentTheme() {
-  applyTheme(theme, { target: html, isDark: isDark() });
+  applyTheme(theme, { target: document.documentElement, isDark: false });
 }
 
 const dialog = document.getElementById("demo-dialog");
@@ -20,17 +17,5 @@ document.getElementById("confirm-dialog").addEventListener("click", () => { dial
 
 const menu = document.getElementById("demo-menu");
 document.getElementById("open-menu").addEventListener("click", () => { menu.open = !menu.open; });
-
-document.getElementById("theme-toggle").addEventListener("click", () => {
-  html.classList.toggle("dark");
-  icon.textContent = isDark() ? "light_mode" : "dark_mode";
-  localStorage.setItem("theme", isDark() ? "dark" : "light");
-  applyCurrentTheme();
-});
-
-if (localStorage.getItem("theme") === "dark" || (!localStorage.getItem("theme") && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-  html.classList.add("dark");
-  icon.textContent = "light_mode";
-}
 
 applyCurrentTheme();

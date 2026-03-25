@@ -23,9 +23,9 @@
               "md-surface":            "var(--md-sys-color-surface)",
               "md-surface-variant":    "var(--md-sys-color-surface-variant)",
               "md-outline":            "var(--md-sys-color-outline)",
-              "md-on-surface":         "var(--color-on-surface)",
-              "md-on-surface-sub":     "var(--color-on-surface-sub)",
-              "md-hero-text":          "var(--color-hero-text)",
+              "md-on-surface":         "var(--md-sys-color-on-surface)",
+              "md-on-surface-sub":     "var(--md-sys-color-on-surface-variant)",
+              "md-hero-text":          "var(--md-sys-color-on-primary-container)",
             },
             fontFamily: {
               roboto: ["Roboto", "sans-serif"],
@@ -41,7 +41,8 @@
     <script type="importmap">
       {
         "imports": {
-          "@material/web/": "https://esm.run/@material/web/"
+          "@material/web/": "https://esm.run/@material/web/",
+          "@material/material-color-utilities": "https://esm.run/@material/material-color-utilities"
         }
       }
     </script>

@@ -1,35 +1,7 @@
 :root {
-  --md-sys-color-primary:            #C0002E;
-  --md-sys-color-on-primary:         #ffffff;
-  --md-sys-color-primary-container:  #FFD9DE;
-  --md-sys-color-on-primary-container: #40000D;
-  --md-sys-color-secondary:          #775659;
-  --md-sys-color-surface:            #fffbfe;
-  --md-sys-color-surface-variant:    #f4dddf;
-  --md-sys-color-on-surface-variant: #524344;
-  --md-sys-color-outline:            #857375;
-  --md-ref-typeface-brand:           "Roboto";
-  --md-ref-typeface-plain:           "Roboto";
-  --color-on-surface:                #1c1b1f;
-  --color-on-surface-sub:            #49454f;
-  --color-hero-text:                 #5c0018;
-  --color-hero-gradient-to:          #ffb3be;
-}
-
-html.dark {
-  --md-sys-color-primary:            #FFB3BE;
-  --md-sys-color-on-primary:         #67001A;
-  --md-sys-color-primary-container:  #920023;
-  --md-sys-color-on-primary-container: #FFD9DE;
-  --md-sys-color-secondary:          #E6BDBF;
-  --md-sys-color-surface:            #201A1A;
-  --md-sys-color-surface-variant:    #534344;
-  --md-sys-color-on-surface-variant: #D8C2C3;
-  --md-sys-color-outline:            #A08C8E;
-  --color-on-surface:                #F2E8E9;
-  --color-on-surface-sub:            #D8D0D2;
-  --color-hero-text:                 #FFD9DE;
-  --color-hero-gradient-to:          #6b0018;
+  --md-ref-typeface-brand: "Roboto";
+  --md-ref-typeface-plain: "Roboto";
+  --color-hero-gradient-to: #ffb3be;
 }
 
 md-filled-text-field,

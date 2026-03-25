@@ -56,24 +56,7 @@ tagChipSet.querySelectorAll("md-filter-chip").forEach((chip) => {
   chip.addEventListener("remove", () => chip.remove());
 });
 
-const tabs = document.getElementById("content-tabs");
-const tabPanels = [
-  document.getElementById("panel-design"),
-  document.getElementById("panel-code"),
-  document.getElementById("panel-ship")
-];
-
-function syncTabs() {
-  const activeTab = tabs.querySelector("md-primary-tab[active]");
-  const activePanelId = activeTab?.getAttribute("aria-controls");
-  tabPanels.forEach((panel) => {
-    const isActive = panel.id === activePanelId;
-    panel.classList.toggle("hidden", !isActive);
-    panel.classList.toggle("flex", isActive);
-  });
-}
-
-tabs.addEventListener("change", syncTabs);
-syncTabs();
+document.getElementById("ripple-surface").attach(document.getElementById("ripple-surface-control"));
+document.getElementById("ripple-icon").attach(document.getElementById("ripple-icon-control"));
 
 applyCurrentTheme();

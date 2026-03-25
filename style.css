@@ -2,6 +2,8 @@
   --md-ref-typeface-brand: "Roboto";
   --md-ref-typeface-plain: "Roboto";
   --color-hero-gradient-to: #ffb3be;
+  --md-ripple-hover-color: var(--md-sys-color-primary);
+  --md-ripple-pressed-color: var(--md-sys-color-primary);
   --md-filled-button-disabled-container-color: #eadfe2;
   --md-filled-button-disabled-label-text-color: #8a7d81;
   --md-filled-tonal-button-disabled-container-color: #eadfe2;
@@ -53,4 +55,11 @@ md-outlined-select {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+md-ripple.unbounded {
+  border-radius: 50%;
+  inset: unset;
+  width: 64px;
+  height: 64px;
 }

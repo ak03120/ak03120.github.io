@@ -322,34 +322,20 @@
       <section class="flex flex-col gap-4">
         <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Tabs</div>
         <div class="bg-md-surface-variant rounded-2xl overflow-hidden">
-          <md-tabs id="content-tabs" aria-label="コンテンツカテゴリ">
-            <md-primary-tab id="tab-design" aria-controls="panel-design" active>
+          <md-tabs aria-label="コンテンツカテゴリ">
+            <md-primary-tab active>
               <md-icon slot="icon">palette</md-icon>
               Design
             </md-primary-tab>
-            <md-primary-tab id="tab-code" aria-controls="panel-code">
+            <md-primary-tab>
               <md-icon slot="icon">code</md-icon>
               Code
             </md-primary-tab>
-            <md-primary-tab id="tab-ship" aria-controls="panel-ship">
+            <md-primary-tab>
               <md-icon slot="icon">rocket_launch</md-icon>
               Ship
             </md-primary-tab>
           </md-tabs>
-          <div class="p-6">
-            <div id="panel-design" role="tabpanel" aria-labelledby="tab-design" class="flex flex-col gap-2">
-              <h3 class="text-lg font-medium text-md-on-surface">デザインシステム</h3>
-              <p class="text-sm text-md-on-surface-sub leading-relaxed">カラー、タイポグラフィ、シェイプを通して一貫した体験を組み立てます。</p>
-            </div>
-            <div id="panel-code" role="tabpanel" aria-labelledby="tab-code" class="hidden flex-col gap-2">
-              <h3 class="text-lg font-medium text-md-on-surface">実装パターン</h3>
-              <p class="text-sm text-md-on-surface-sub leading-relaxed">Material Web Components を組み合わせて、保守しやすい UI を構築できます。</p>
-            </div>
-            <div id="panel-ship" role="tabpanel" aria-labelledby="tab-ship" class="hidden flex-col gap-2">
-              <h3 class="text-lg font-medium text-md-on-surface">リリース準備</h3>
-              <p class="text-sm text-md-on-surface-sub leading-relaxed">アクセシビリティと一貫性を保ちながら、プロダクト全体へ安全に展開できます。</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -385,12 +371,12 @@
       <section class="flex flex-col gap-4">
         <div class="text-xs font-medium tracking-widest text-md-secondary uppercase pb-1 border-b border-md-surface-variant">Ripple</div>
         <div class="flex flex-wrap gap-4 items-center">
-          <button type="button" class="ripple-demo-surface">
-            <md-ripple></md-ripple>
+          <button type="button" id="ripple-surface-control" class="ripple-demo-surface">
+            <md-ripple id="ripple-surface"></md-ripple>
             Surface Ripple
           </button>
-          <button type="button" class="ripple-demo-icon" aria-label="お気に入り">
-            <md-ripple unbounded></md-ripple>
+          <button type="button" id="ripple-icon-control" class="ripple-demo-icon" aria-label="お気に入り">
+            <md-ripple id="ripple-icon" class="unbounded"></md-ripple>
             <md-icon>favorite</md-icon>
           </button>
         </div>

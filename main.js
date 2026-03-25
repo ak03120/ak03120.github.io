@@ -8,10 +8,56 @@ const theme = themeFromSourceColor(argbFromHex("#C0002E"));
 const html = document.documentElement;
 const icon = document.getElementById("theme-icon");
 const isDark = () => html.classList.contains("dark");
+const darkOverrides = {
+  "--md-sys-color-primary": "#ffb2c8",
+  "--md-sys-color-on-primary": "#670023",
+  "--md-sys-color-primary-container": "#8f1140",
+  "--md-sys-color-on-primary-container": "#ffd9e3",
+  "--md-sys-color-secondary": "#f3b7c8",
+  "--md-sys-color-on-secondary": "#4c1128",
+  "--md-sys-color-secondary-container": "#673041",
+  "--md-sys-color-on-secondary-container": "#ffd9e3",
+  "--md-sys-color-surface": "#181113",
+  "--md-sys-color-surface-dim": "#181113",
+  "--md-sys-color-surface-bright": "#43373b",
+  "--md-sys-color-surface-container-lowest": "#120c0e",
+  "--md-sys-color-surface-container-low": "#21181b",
+  "--md-sys-color-surface-container": "#281d21",
+  "--md-sys-color-surface-container-high": "#33262b",
+  "--md-sys-color-surface-container-highest": "#3f3137",
+  "--md-sys-color-on-surface": "#f7dfe5",
+  "--md-sys-color-on-surface-variant": "#dcbfc7",
+  "--md-sys-color-outline": "#b3969f",
+  "--md-sys-color-outline-variant": "#5d454d",
+  "--md-filled-button-disabled-container-color": "#4f4046",
+  "--md-filled-button-disabled-label-text-color": "#f2d5dd",
+  "--md-filled-tonal-button-disabled-container-color": "#5a4248",
+  "--md-filled-tonal-button-disabled-label-text-color": "#ffe8ee",
+  "--md-outlined-button-disabled-label-text-color": "#f2d7de",
+  "--md-outlined-button-disabled-outline-color": "#9d8088",
+  "--md-text-button-disabled-label-text-color": "#f2d7de",
+  "--md-elevated-button-disabled-container-color": "#4b3d43",
+  "--md-elevated-button-disabled-label-text-color": "#f2d5dd",
+  "--md-fab-container-color": "#f3dfe5",
+  "--md-fab-icon-color": "#8f1140",
+  "--md-fab-branded-container-color": "#f3dfe5"
+};
+const overrideKeys = Object.keys(darkOverrides);
 
 function applyCurrentTheme() {
   applyTheme(theme, { target: html, isDark: isDark() });
-  html.style.setProperty("--color-hero-gradient-to", isDark() ? "#6b0018" : "#ffb3be");
+  if (isDark()) {
+    for (const [key, value] of Object.entries(darkOverrides)) {
+      html.style.setProperty(key, value);
+    }
+    html.style.setProperty("--color-hero-gradient-to", "#5b142a");
+    return;
+  }
+
+  for (const key of overrideKeys) {
+    html.style.removeProperty(key);
+  }
+  html.style.setProperty("--color-hero-gradient-to", "#ffb3be");
 }
 
 const dialog = document.getElementById("demo-dialog");

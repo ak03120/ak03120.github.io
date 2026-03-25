@@ -8,3 +8,16 @@ md-filled-text-field,
 md-outlined-text-field {
   min-width: 200px;
 }
+
+html.dark md-filled-button[disabled],
+html.dark md-filled-tonal-button[disabled],
+html.dark md-outlined-button[disabled],
+html.dark md-text-button[disabled],
+html.dark md-elevated-button[disabled] {
+  opacity: 1;
+}
+
+html.dark md-fab,
+html.dark md-branded-fab {
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.22));
+}

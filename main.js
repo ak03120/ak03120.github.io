@@ -8,7 +8,23 @@ const theme = themeFromSourceColor(argbFromHex("#C0002E"));
 const html = document.documentElement;
 const icon = document.getElementById("theme-icon");
 const isDark = () => html.classList.contains("dark");
+const lightOverrides = {
+  "--color-hero-gradient-to": "#ffb3be",
+  "--md-filled-button-disabled-container-color": "#eadfe2",
+  "--md-filled-button-disabled-label-text-color": "#8a7d81",
+  "--md-filled-tonal-button-disabled-container-color": "#eadfe2",
+  "--md-filled-tonal-button-disabled-label-text-color": "#8a7d81",
+  "--md-outlined-button-disabled-label-text-color": "#8a7d81",
+  "--md-outlined-button-disabled-outline-color": "#b4a7ab",
+  "--md-text-button-disabled-label-text-color": "#8a7d81",
+  "--md-elevated-button-disabled-container-color": "#f1e5e9",
+  "--md-elevated-button-disabled-label-text-color": "#8a7d81",
+  "--md-fab-container-color": "#f9dce3",
+  "--md-fab-icon-color": "#8f1140",
+  "--md-fab-branded-container-color": "#f9dce3"
+};
 const darkOverrides = {
+  "--color-hero-gradient-to": "#5b142a",
   "--md-sys-color-primary": "#ffb2c8",
   "--md-sys-color-on-primary": "#670023",
   "--md-sys-color-primary-container": "#8f1140",
@@ -42,22 +58,13 @@ const darkOverrides = {
   "--md-fab-icon-color": "#8f1140",
   "--md-fab-branded-container-color": "#f3dfe5"
 };
-const overrideKeys = Object.keys(darkOverrides);
 
 function applyCurrentTheme() {
   applyTheme(theme, { target: html, isDark: isDark() });
-  if (isDark()) {
-    for (const [key, value] of Object.entries(darkOverrides)) {
-      html.style.setProperty(key, value);
-    }
-    html.style.setProperty("--color-hero-gradient-to", "#5b142a");
-    return;
+  const overrides = isDark() ? darkOverrides : lightOverrides;
+  for (const [key, value] of Object.entries(overrides)) {
+    html.style.setProperty(key, value);
   }
-
-  for (const key of overrideKeys) {
-    html.style.removeProperty(key);
-  }
-  html.style.setProperty("--color-hero-gradient-to", "#ffb3be");
 }
 
 const dialog = document.getElementById("demo-dialog");

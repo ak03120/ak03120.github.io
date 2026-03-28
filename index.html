@@ -309,14 +309,6 @@
             </md-menu>
           </div>
         </div>
-        <md-dialog id="demo-dialog">
-          <div slot="headline">確認</div>
-          <div slot="content">この操作を実行してもよろしいですか？</div>
-          <div slot="actions">
-            <md-text-button id="close-dialog">キャンセル</md-text-button>
-            <md-filled-button id="confirm-dialog">確認</md-filled-button>
-          </div>
-        </md-dialog>
       </section>
 
       <section class="flex flex-col gap-4">
@@ -397,6 +389,15 @@
       </section>
 
     </main>
+
+    <md-dialog id="demo-dialog">
+      <div slot="headline">確認</div>
+      <div slot="content">この操作を実行してもよろしいですか？</div>
+      <div slot="actions">
+        <md-text-button id="close-dialog">キャンセル</md-text-button>
+        <md-filled-button id="confirm-dialog">確認</md-filled-button>
+      </div>
+    </md-dialog>
 
   </body>
 </html>
